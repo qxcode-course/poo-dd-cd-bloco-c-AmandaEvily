@@ -1,0 +1,14 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-11_19-31-21",
+            "content": "@@ -235,240 +235,34 @@\n     \n-for _ in range (num_caixas):%0A            self.caixas.append(None)%0A        self.espera: list%5BPerson%5D = %5B%5D%0A%0A    def __str__(self):%0A        return f%22Caixas:%7Bself.caixas%7D%5CnEspera:%7Bself.espera%7D%22%0A    %0Aperson = Person(%22Maria%22)%0Aprint (person) %0A\n+self.espera: list%5BPerson%5D = %5B%5D\n",
+            "lines": "11"
+        },
+        {
+            "label": "2025-11-11_22-08-10",
+            "content": "class Person:\n    def __init__(self, nome: str):\n        self.nome = nome\n\n    def __str__(self):\n        return self.nome\n    \nclass Market: \n    def __init__(self, num_caixas: int):\n        self.caixas: list[Person | None] = []\n        for _ in range (num_caixas):\n            self.caixas.append(None)\n        self.espera: list[Person] = []\n\n    def __str__(self):\n        return f\"Caixas:{self.caixas}\\nEspera:{self.espera}\"\n    \nperson = Person(\"Maria\")\nprint (person) \n",
+            "lines": "19"
+        }
+    ]
+}
