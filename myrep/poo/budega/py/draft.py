@@ -15,7 +15,7 @@ class Market:
             self.caixas.append(None)
         self.espera: list[Person] = []
 
-    def enter(self, person: Person): 
+    def arrive(self, person: Person): 
         self.espera.append(person)
 
     def call(self, index: int):
@@ -23,20 +23,20 @@ class Market:
             print("indice inexistente")
             return 
         if self.caixas[index] is not None:
-            print("caixa ocupado")
+            print("fail: caixa ocupado")
             return
         if len(self.espera) == 0:
-            print("ninguem esperando")
+            print("fail: sem clientes")
             return
         self.caixas[index] = self.espera[0]
         del self.espera[0] 
 
     def finish(self, index: int):
         if index < 0 or index >= len(self.caixas):
-            print("indice inexistente")
+            print("fail: caixa inexistente")
             return 
         if self.caixas[index] is None:
-            print("caixa vazio")
+            print("fail: caixa vazio")
             return
         self.caixas [index] = None
 
@@ -49,11 +49,15 @@ class Market:
             return None
 
     def __str__(self):
-        self.caixas = [Person(" [-----, -----]")]
-        ", ".join([str(x)for x in self.caixas])
-        caixas = ", ".join([str(x) for x in self.caixas])
+        lista: list[str] = []
+        for pes in self.caixas:
+            if pes is None:
+                lista.append("-----")
+            else:
+                lista.append(str(pes))
+        caixas = ", ".join(lista)
         espera = ", ".join([str(x) for x in self.espera])
-        return f"Caixas:{caixas}\nEspera:{espera} "
+        return f"Caixas: [{caixas}]\nEspera: [{espera}]"
     
 def main():
     market = Market(0)
@@ -68,8 +72,8 @@ def main():
             market = Market(int(args[1]))
         if args[0] == "show":
             print (market)
-        if args[0] == "enter":
-            market.enter(Person(args[1]))
+        if args[0] == "arrive":
+            market.arrive(Person(args[1]))
         if args[0] == "call":
             fila = int(int(args[1]))
             market.call(fila)

@@ -117,8 +117,63 @@
         },
         {
             "label": "2025-11-17_02-32-50",
-            "content": "class Person:\n    def __init__(self, nome: str):\n        self.nome = nome\n\n    def getNome(self) -> str:\n        return self.nome\n\n    def __str__(self):\n        return self.nome\n    \nclass Market: \n    def __init__(self, num_caixas: int):\n        self.caixas: list[Person | None] = []\n        for _ in range (num_caixas):\n            self.caixas.append(None)\n        self.espera: list[Person] = []\n\n    def enter(self, person: Person): \n        self.espera.append(person)\n\n    def call(self, index: int):\n        if index < 0 or index >= len(self.caixas):\n            print(\"indice inexistente\")\n            return \n        if self.caixas[index] is not None:\n            print(\"caixa ocupado\")\n            return\n        if len(self.espera) == 0:\n            print(\"ninguem esperando\")\n            return\n        self.caixas[index] = self.espera[0]\n        del self.espera[0] \n\n    def finish(self, index: int):\n        if index < 0 or index >= len(self.caixas):\n            print(\"indice inexistente\")\n            return \n        if self.caixas[index] is None:\n            print(\"caixa vazio\")\n            return\n        self.caixas [index] = None\n\n    def give_up(self, nome: str) -> Person | None:\n        for i, person in enumerate(self.espera):\n            if person.nome == nome:\n                aux = self.espera[i]\n                del self.espera[i]\n                return aux\n            return None\n\n    def __str__(self):\n        self.caixas = [Person(\" [-----, -----]\")]\n        \", \".join([str(x)for x in self.caixas])\n        caixas = \", \".join([str(x) for x in self.caixas])\n        espera = \", \".join([str(x) for x in self.espera])\n        return f\"Caixas:{caixas}\\nEspera:{espera} \"\n    \ndef main():\n    market = Market(0)\n\n    while True:\n        line = input()\n        print(\"$\"+ line)\n        args: list[str] = line.split()\n        if args[0] == \"end\":\n            break\n        if args[0] == \"init\":\n            market = Market(int(args[1]))\n        if args[0] == \"show\":\n            print (market)\n        if args[0] == \"enter\":\n            market.enter(Person(args[1]))\n        if args[0] == \"call\":\n            fila = int(int(args[1]))\n            market.call(fila)\n        if args[0] == \"finish\":\n            pessoa = int(args[1])\n            market.finish(pessoa)\n\nmain ()\n            ",
+            "content": "@@ -1686,17 +1686,16 @@\n era:\n-%5B\n %7Bespera%7D\n %5D %22%0A\n@@ -1690,17 +1690,16 @@\n %7Bespera%7D\n-%5D\n  %22%0A    %0A\n",
             "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-37-13",
+            "content": "@@ -1682,17 +1682,16 @@\n nEspera:\n- \n %5B%7Bespera\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-37-23",
+            "content": "@@ -1693,16 +1693,17 @@\n espera%7D%5D\n+ \n %22%0A    %0Ad\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-37-43",
+            "content": "@@ -1333,16 +1333,34 @@\n         \n+del self.espera%5Bi%5D\n %0A       \n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-38-01",
+            "content": "@@ -1337,27 +1337,9 @@\n     \n-del self.espera%5Bi%5D\n %0A\n+\n     \n@@ -1421,217 +1421,154 @@\n     \n-lista: list%5Bstr%5D = %5B%5D%0A        for pes in self.caixas:%0A            if pes is None:%0A                lista.append(%22\n+self.caixas = %5BPerson(%22 %5B-----, \n -----\n+%5D\n %22)\n-%0A            else:%0A                lista.append(str(pes))%0A        caixas = %22, %22.join(lista\n+%5D%0A        %22, %22.join(%5Bstr(x)for x in self.caixas%5D)%0A        caixas = %22, %22.join(%5Bstr(x) for x in self.caixas%5D\n )%0A  \n@@ -1651,17 +1651,16 @@\n xas:\n-%5B\n %7Bcaixas%7D\n %5D%5CnE\n@@ -1655,17 +1655,16 @@\n %7Bcaixas%7D\n-%5D\n %5CnEspera\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-52-17",
+            "content": "@@ -1728,17 +1728,16 @@\n %22Caixas:\n- \n %5B%7Bcaixas\n",
+            "lines": "85"
+        },
+        {
+            "label": "2025-11-17_02-52-27",
+            "content": "@@ -401,22 +401,21 @@\n     def \n-arrive\n+enter\n (self, p\n@@ -2135,14 +2135,13 @@\n ket.\n-arrive\n+enter\n (Per\n",
+            "lines": "85"
+        },
+        {
+            "label": "2025-11-17_02-54-22",
+            "content": "@@ -2105,22 +2105,21 @@\n %5B0%5D == %22\n-arrive\n+enter\n %22:%0A     \n",
+            "lines": "85"
+        },
+        {
+            "label": "2025-11-17_02-55-09",
+            "content": "@@ -677,14 +677,8 @@\n nt(%22\n-fail: \n caix\n",
+            "lines": "85"
+        },
+        {
+            "label": "2025-11-17_02-55-28",
+            "content": "@@ -771,26 +771,25 @@\n nt(%22\n-fail: sem clientes\n+ninguem esperando\n %22)%0A \n",
+            "lines": "85"
+        },
+        {
+            "label": "2025-11-17_02-55-51",
+            "content": "@@ -984,27 +984,22 @@\n  print(%22\n-fail: caixa\n+indice\n  inexist\n@@ -1079,30 +1079,24 @@\n      print(%22\n-fail: \n caixa vazio%22\n",
+            "lines": "85"
+        },
+        {
+            "label": "2025-11-17_02-56-17",
+            "content": "class Person:\n    def __init__(self, nome: str):\n        self.nome = nome\n\n    def getNome(self) -> str:\n        return self.nome\n\n    def __str__(self):\n        return self.nome\n    \nclass Market: \n    def __init__(self, num_caixas: int):\n        self.caixas: list[Person | None] = []\n        for _ in range (num_caixas):\n            self.caixas.append(None)\n        self.espera: list[Person] = []\n\n    def arrive(self, person: Person): \n        self.espera.append(person)\n\n    def call(self, index: int):\n        if index < 0 or index >= len(self.caixas):\n            print(\"indice inexistente\")\n            return \n        if self.caixas[index] is not None:\n            print(\"fail: caixa ocupado\")\n            return\n        if len(self.espera) == 0:\n            print(\"fail: sem clientes\")\n            return\n        self.caixas[index] = self.espera[0]\n        del self.espera[0] \n\n    def finish(self, index: int):\n        if index < 0 or index >= len(self.caixas):\n            print(\"fail: caixa inexistente\")\n            return \n        if self.caixas[index] is None:\n            print(\"fail: caixa vazio\")\n            return\n        self.caixas [index] = None\n\n    def give_up(self, nome: str) -> Person | None:\n        for i, person in enumerate(self.espera):\n            if person.nome == nome:\n                aux = self.espera[i]\n                del self.espera[i]\n                return aux\n            return None\n\n    def __str__(self):\n        lista: list[str] = []\n        for pes in self.caixas:\n            if pes is None:\n                lista.append(\"-----\")\n            else:\n                lista.append(str(pes))\n        caixas = \", \".join(lista)\n        espera = \", \".join([str(x) for x in self.espera])\n        return f\"Caixas: [{caixas}]\\nEspera: [{espera}]\"\n    \ndef main():\n    market = Market(0)\n\n    while True:\n        line = input()\n        print(\"$\"+ line)\n        args: list[str] = line.split()\n        if args[0] == \"end\":\n            break\n        if args[0] == \"init\":\n            market = Market(int(args[1]))\n        if args[0] == \"show\":\n            print (market)\n        if args[0] == \"arrive\":\n            market.arrive(Person(args[1]))\n        if args[0] == \"call\":\n            fila = int(int(args[1]))\n            market.call(fila)\n        if args[0] == \"finish\":\n            pessoa = int(args[1])\n            market.finish(pessoa)\n\nmain ()\n            ",
+            "lines": "85"
         }
     ]
 }
