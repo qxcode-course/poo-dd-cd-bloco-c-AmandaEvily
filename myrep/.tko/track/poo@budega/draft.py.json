@@ -7,8 +7,118 @@
         },
         {
             "label": "2025-11-11_22-08-10",
-            "content": "class Person:\n    def __init__(self, nome: str):\n        self.nome = nome\n\n    def __str__(self):\n        return self.nome\n    \nclass Market: \n    def __init__(self, num_caixas: int):\n        self.caixas: list[Person | None] = []\n        for _ in range (num_caixas):\n            self.caixas.append(None)\n        self.espera: list[Person] = []\n\n    def __str__(self):\n        return f\"Caixas:{self.caixas}\\nEspera:{self.espera}\"\n    \nperson = Person(\"Maria\")\nprint (person) \n",
+            "content": "@@ -349,1285 +349,53 @@\n def \n-enter(self, person: Person): %0A        self.espera.append(person)%0A%0A    def call(self, index: int):%0A        if index %3C 0 or index %3E= len(self.caixas):%0A            print(%22indice inexistente%22)%0A            return %0A        if self.caixas%5Bindex%5D is not None:%0A            print(%22caixa ocupado%22)%0A            return%0A        if len(self.espera) == 0:%0A            print(%22ninguem esperando%22)%0A            return%0A        self.caixas%5Bindex%5D = self.espera%5B0%5D%0A        del self.espera%5B0%5D %0A%0A    def finish(self, index: int):%0A        if index %3C 0 or index %3E= len(self.caixas):%0A            print(%22indice inexistente%22)%0A            return %0A        if self.caixas%5Bindex%5D is None:%0A            print(%22caixa vazio%22)%0A            return%0A        self.caixas %5Bindex%5D = None%0A%0A    def give_up(self, nome: str) -%3E Person %7C None:%0A        for i, person in enumerate(self.espera):%0A            if person.nome == nome:%0A                aux = self.espera%5Bi%5D%0A                del self.espera%5Bi%5D%0A                return aux%0A            return None%0A%0A    def __str__(self):%0A        self.caixas = %5BPerson(%22Maria%22), None, Person(%22Joao%22)%5D%0A        %22, %22.join(%5Bstr(x)for x in self.caixas%5D)%0A        caixas = %22, %22.join(%5Bstr(x) for x in self.caixas%5D)%0A        espera = %22, %22.join(%5Bstr(x) for x in self.espera%5D)%0A        return f%22Caixas:%7B\n+__str__(self):%0A        return f%22Caixas:%7Bself.\n caix\n@@ -407,16 +407,21 @@\n Espera:%7B\n+self.\n espera%7D%22\n",
             "lines": "19"
+        },
+        {
+            "label": "2025-11-17_01-26-37",
+            "content": "@@ -72,64 +72,8 @@\n me%0A%0A\n-    def getNome(self) -%3E str:%0A        return self.nome%0A%0A\n     \n@@ -1657,610 +1657,45 @@\n    %0A\n-def main():%0A    market = Market(0)%0A%0A    while True:%0A        line = input()%0A        print(%22$%22+ line)%0A        args: list%5Bstr%5D = line.split()%0A        if args%5B0%5D == %22end%22:%0A            break%0A        if args%5B0%5D == %22init%22:%0A            market = Market(int(args%5B1%5D))%0A        if args%5B0%5D == %22show%22:%0A            print (market)%0A        if args%5B0%5D == %22enter%22:%0A            market.enter(Person(args%5B1%5D))%0A        if args%5B0%5D == %22call%22:%0A            fila = int(int(args%5B1%5D))%0A            market.call(fila)%0A        if args%5B0%5D == %22finish%22:%0A            pessoa = int(args%5B1%5D)%0A            market.finish(pessoa)%0A%0Amain ()%0A            \n+person = Person(%22Maria%22)%0Aprint (person) %0A\n",
+            "lines": "56"
+        },
+        {
+            "label": "2025-11-17_01-48-49",
+            "content": "@@ -1458,23 +1458,29 @@\n Person(%22\n------%22)\n+Maria%22), None\n , Person\n@@ -1485,13 +1485,12 @@\n on(%22\n------\n+Joao\n %22)%5D%0A\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_01-49-27",
+            "content": "@@ -1458,23 +1458,21 @@\n Person(%22\n-%5B\n -----\n-%5D\n %22), Pers\n@@ -1479,15 +1479,13 @@\n on(%22\n-%5B\n -----\n-%5D\n %22)%5D%0A\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_01-49-47",
+            "content": "@@ -1462,17 +1462,28 @@\n on(%22\n- \n %5B-----\n-, \n+%5D%22), Person(%22%5B\n ----\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_01-50-31",
+            "content": "@@ -1690,19 +1690,16 @@\n %7Bespera%7D\n- %5B%5D\n %22%0A    %0Ad\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_01-54-05",
+            "content": "@@ -1696,27 +1696,8 @@\n a%7D %5B\n-carla, maria, rubia\n %5D%22%0A \n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_01-54-45",
+            "content": "@@ -1692,16 +1692,35 @@\n spera%7D %5B\n+carla, maria, rubia\n %5D%22%0A    %0A\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_01-55-06",
+            "content": "@@ -851,16 +851,34 @@\n         \n+del self.espera%5B0%5D\n  %0A%0A    d\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_01-57-35",
+            "content": "@@ -855,26 +855,8 @@\n     \n-del self.espera%5B0%5D\n  %0A%0A \n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_01-57-56",
+            "content": "@@ -807,16 +807,78 @@\n         \n+self.caixas%5Bindex%5D = self.espera%5B0%5D%0A        del self.espera%5B0%5D\n  %0A%0A    d\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_01-58-12",
+            "content": "@@ -811,70 +811,8 @@\n     \n-self.caixas%5Bindex%5D = self.espera%5B0%5D%0A        del self.espera%5B0%5D\n  %0A%0A \n@@ -1271,16 +1271,34 @@\n         \n+del self.espera%5Bi%5D\n %0A       \n",
+            "lines": "80"
+        },
+        {
+            "label": "2025-11-17_02-00-16",
+            "content": "@@ -1337,26 +1337,8 @@\n     \n-del self.espera%5Bi%5D\n %0A   \n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-00-42",
+            "content": "@@ -1434,16 +1434,58 @@\n %0A       \n+ self.caixas = %5BPerson(%22 %5B-----, -----%5D%22)%5D\n %0A       \n@@ -1691,16 +1691,18 @@\n espera%7D \n+%5B%5D\n %22%0A    %0Ad\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-05-44",
+            "content": "@@ -1438,59 +1438,56 @@\n     \n- self.caixas = %5BPerson(%22 %5B-----, -----%5D%22)%5D%0A        \n+%0A        %22, %22.join(%5Bstr(x)for x in self.caixas%5D)\n %0A   \n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-07-12",
+            "content": "@@ -1489,47 +1489,8 @@\n     \n-%22, %22.join(%5Bstr(x)for x in self.caixas%5D)\n %0A   \n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-07-28",
+            "content": "@@ -1508,38 +1508,38 @@\n x)for x in self.\n-espera\n+caixas\n %5D)%0A        caixa\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-08-03",
+            "content": "@@ -1439,144 +1439,97 @@\n     \n-lista = %5Bx for x in self.caixas%5D%0A        for _ in range(len(lista)):%0A            if lista%5B_%5D == None:%0A                lista%5B_%5D = %22-----%22\n+self.caixas = %5BPerson(%22 %5B-----, -----%5D%22)%5D%0A        %22, %22.join(%5Bstr(x)for x in self.espera%5D)\n %0A   \n@@ -1573,13 +1573,19 @@\n  in \n-lista\n+self.caixas\n %5D)%0A \n@@ -1665,17 +1665,16 @@\n %22Caixas:\n-%5B\n %7Bcaixas%7D\n@@ -1690,17 +1690,16 @@\n %7Bespera%7D\n-%5D\n  %22%0A    %0A\n",
+            "lines": "81"
+        },
+        {
+            "label": "2025-11-17_02-23-07",
+            "content": "@@ -1715,17 +1715,16 @@\n %7Bcaixas%7D\n-%5D\n %5CnEspera\n@@ -1724,17 +1724,16 @@\n nEspera:\n-%5B\n %7Bespera%7D\n",
+            "lines": "83"
+        },
+        {
+            "label": "2025-11-17_02-23-32",
+            "content": "@@ -1564,16 +1564,23 @@\n ta%5B_%5D = \n+%22-----%22\n %0A       \n",
+            "lines": "83"
+        },
+        {
+            "label": "2025-11-17_02-30-14",
+            "content": "@@ -1444,51 +1444,13 @@\n ista\n-_visual = %5B%22-----%22 if x is None else str(x)\n+ = %5Bx\n  for\n@@ -1468,25 +1468,24 @@\n caixas%5D%0A\n-%0A\n         \n # Junta \n@@ -1480,118 +1480,96 @@\n     \n-# Junta tudo com v%C3%ADrgula%0A        caixas = %22, %22.join(lista_visual)%0A        %0A        # Faz o mesmo para a espera\n+for _ in range(len(lista)):%0A            if lista%5B_%5D == None:%0A                lista%5B_%5D = \n %0A   \n@@ -1573,22 +1573,22 @@\n         \n-espera\n+caixas\n  = %22, %22.\n@@ -1609,26 +1609,20 @@\n or x in \n-self.esper\n+list\n a%5D)%0A    \n@@ -1629,36 +1629,57 @@\n     \n-%0A        # Retorna formatado\n+espera = %22, %22.join(%5Bstr(x) for x in self.espera%5D)\n %0A   \n@@ -1699,17 +1699,16 @@\n %22Caixas:\n- \n %5B%7Bcaixas\n@@ -1718,17 +1718,16 @@\n nEspera:\n- \n %5B%7Bespera\n@@ -1728,16 +1728,17 @@\n espera%7D%5D\n+ \n %22%0A    %0Ad\n",
+            "lines": "83"
+        },
+        {
+            "label": "2025-11-17_02-31-55",
+            "content": "@@ -1439,75 +1439,57 @@\n     \n-self.caixas = %5BPerson(%22 %5B-----, -----%5D%22)%5D%0A        %22, %22.join(%5B\n+lista_visual = %5B%22-----%22 if x is None else \n str(x)\n+ \n for \n@@ -1509,67 +1509,128 @@\n xas%5D\n-)%0A        caixas = %22, %22.join(%5Bstr(x) for x in self.caixas%5D)\n+%0A%0A        # Junta tudo com v%C3%ADrgula%0A        caixas = %22, %22.join(lista_visual)%0A        %0A        # Faz o mesmo para a espera\n %0A   \n@@ -1684,16 +1684,53 @@\n spera%5D)%0A\n+        %0A        # Retorna formatado%0A\n         \n@@ -1749,16 +1749,18 @@\n xas:\n+ %5B\n %7Bcaixas%7D\n %5CnEs\n@@ -1755,16 +1755,17 @@\n %7Bcaixas%7D\n+%5D\n %5CnEspera\n@@ -1769,16 +1769,18 @@\n era:\n+ %5B\n %7Bespera%7D\n  %22%0A \n@@ -1775,17 +1775,17 @@\n %7Bespera%7D\n- \n+%5D\n %22%0A    %0Ad\n",
+            "lines": "86"
+        },
+        {
+            "label": "2025-11-17_02-32-50",
+            "content": "class Person:\n    def __init__(self, nome: str):\n        self.nome = nome\n\n    def getNome(self) -> str:\n        return self.nome\n\n    def __str__(self):\n        return self.nome\n    \nclass Market: \n    def __init__(self, num_caixas: int):\n        self.caixas: list[Person | None] = []\n        for _ in range (num_caixas):\n            self.caixas.append(None)\n        self.espera: list[Person] = []\n\n    def enter(self, person: Person): \n        self.espera.append(person)\n\n    def call(self, index: int):\n        if index < 0 or index >= len(self.caixas):\n            print(\"indice inexistente\")\n            return \n        if self.caixas[index] is not None:\n            print(\"caixa ocupado\")\n            return\n        if len(self.espera) == 0:\n            print(\"ninguem esperando\")\n            return\n        self.caixas[index] = self.espera[0]\n        del self.espera[0] \n\n    def finish(self, index: int):\n        if index < 0 or index >= len(self.caixas):\n            print(\"indice inexistente\")\n            return \n        if self.caixas[index] is None:\n            print(\"caixa vazio\")\n            return\n        self.caixas [index] = None\n\n    def give_up(self, nome: str) -> Person | None:\n        for i, person in enumerate(self.espera):\n            if person.nome == nome:\n                aux = self.espera[i]\n                del self.espera[i]\n                return aux\n            return None\n\n    def __str__(self):\n        self.caixas = [Person(\" [-----, -----]\")]\n        \", \".join([str(x)for x in self.caixas])\n        caixas = \", \".join([str(x) for x in self.caixas])\n        espera = \", \".join([str(x) for x in self.espera])\n        return f\"Caixas:{caixas}\\nEspera:{espera} \"\n    \ndef main():\n    market = Market(0)\n\n    while True:\n        line = input()\n        print(\"$\"+ line)\n        args: list[str] = line.split()\n        if args[0] == \"end\":\n            break\n        if args[0] == \"init\":\n            market = Market(int(args[1]))\n        if args[0] == \"show\":\n            print (market)\n        if args[0] == \"enter\":\n            market.enter(Person(args[1]))\n        if args[0] == \"call\":\n            fila = int(int(args[1]))\n            market.call(fila)\n        if args[0] == \"finish\":\n            pessoa = int(args[1])\n            market.finish(pessoa)\n\nmain ()\n            ",
+            "lines": "81"
         }
     ]
 }
